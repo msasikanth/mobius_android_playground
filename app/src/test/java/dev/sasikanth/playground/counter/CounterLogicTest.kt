@@ -1,6 +1,5 @@
 package dev.sasikanth.playground.counter
 
-
 import com.spotify.mobius.test.NextMatchers.*
 import com.spotify.mobius.test.UpdateSpec
 import com.spotify.mobius.test.UpdateSpec.assertThatNext

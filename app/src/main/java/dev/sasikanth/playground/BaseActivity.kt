@@ -17,8 +17,7 @@ abstract class BaseActivity<M : Parcelable, E, F> : AppCompatActivity(), Connect
         private const val KEY_MODEL = "key_model"
     }
 
-    lateinit var controller: MobiusLoop.Controller<M, E>
-        private set
+    private lateinit var controller: MobiusLoop.Controller<M, E>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

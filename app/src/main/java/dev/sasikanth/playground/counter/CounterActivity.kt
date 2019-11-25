@@ -8,6 +8,7 @@ import dev.sasikanth.playground.R
 import dev.sasikanth.playground.counter.effecthandlers.CounterEffectHandlers
 import dev.sasikanth.playground.counter.view.CounterViewActions
 import io.reactivex.ObservableTransformer
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class CounterActivity : BaseActivity<CounterModel, CounterEvent, CounterEffect>(),
@@ -29,7 +30,7 @@ class CounterActivity : BaseActivity<CounterModel, CounterEvent, CounterEffect>(
     override fun update(): Update<CounterModel, CounterEvent, CounterEffect> = CounterLogic
 
     override fun effectHandler(): ObservableTransformer<CounterEffect, CounterEvent> =
-        CounterEffectHandlers.create(this)
+        CounterEffectHandlers.create(this, AndroidSchedulers.mainThread())
 
     override fun cleanUp() {
         counterIncrement.setOnClickListener(null)

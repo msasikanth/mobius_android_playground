@@ -5,16 +5,19 @@ import dev.sasikanth.playground.counter.CounterEffect
 import dev.sasikanth.playground.counter.CounterEvent
 import dev.sasikanth.playground.counter.view.CounterViewActions
 import io.reactivex.ObservableTransformer
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.Scheduler
 
 object CounterEffectHandlers {
 
-    fun create(viewActions: CounterViewActions): ObservableTransformer<CounterEffect, CounterEvent> {
+    fun create(
+        viewActions: CounterViewActions,
+        scheduler: Scheduler
+    ): ObservableTransformer<CounterEffect, CounterEvent> {
         return RxMobius.subtypeEffectHandler<CounterEffect, CounterEvent>()
             .addAction(
                 CounterEffect.BelowZero::class.java,
                 viewActions::counterBelowZero,
-                AndroidSchedulers.mainThread()
+                scheduler
             )
             .build()
     }

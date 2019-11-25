@@ -11,13 +11,13 @@ object CounterLogic : Update<CounterModel, CounterEvent, CounterEffect> {
         model: CounterModel,
         event: CounterEvent
     ): Next<CounterModel, CounterEffect> {
-        when (event) {
+        return when (event) {
             CounterEvent.Increment -> {
-                return next(model.increment())
+                next(model.increment())
             }
             CounterEvent.Decrement -> {
-                return if (model.value == 0) {
-                    dispatch(setOf(CounterEffect.BelowZero))
+                if (model.value == 0) {
+                    dispatch(setOf(CounterEffect.BelowZero as CounterEffect))
                 } else {
                     next(model.decrement())
                 }
